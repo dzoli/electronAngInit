@@ -9,11 +9,11 @@ import * as fs from 'fs';
 @Injectable()
 export class ElectronService {
 
-  ipcRenderer: typeof ipcRenderer;
+  ipcRenderer: typeof ipcRenderer;  // Electrons IPC Renderer process from wich we send message to ipcMain
   webFrame: typeof webFrame;
-  remote: typeof remote;
+  remote: typeof remote;  // For communication without IPC messages
   childProcess: typeof childProcess;
-  fs: typeof fs;
+  fs: typeof fs;  // Load the File System to execute our common tasks (CRUD)
 
   constructor() {
     // Conditional imports
@@ -21,7 +21,6 @@ export class ElectronService {
       this.ipcRenderer = window.require('electron').ipcRenderer;
       this.webFrame = window.require('electron').webFrame;
       this.remote = window.require('electron').remote;
-
       this.childProcess = window.require('child_process');
       this.fs = window.require('fs');
     }

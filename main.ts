@@ -20,11 +20,16 @@ function createWindow() {
   });
 
   if (serve) {
+    console.log('serve = true');
     require('electron-reload')(__dirname, {
       electron: require(`${__dirname}/node_modules/electron`)
     });
     win.loadURL('http://localhost:4200');
   } else {
+    console.log('serve = false');
+    // index.html must be from dist folder
+    // because we need already buid angular app
+    // The build output (when ng build is called) typically is located in dist
     win.loadURL(url.format({
       pathname: path.join(__dirname, 'dist/index.html'),
       protocol: 'file:',
