@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ElectronService } from '../../providers/electron.service';
-import { elementCreate } from '@angular/core/src/render3/instructions';
 
 @Component({
   selector: 'app-home',
@@ -9,8 +8,16 @@ import { elementCreate } from '@angular/core/src/render3/instructions';
 })
 export class HomeComponent implements OnInit {
 
+  barEvents: string[] = [];
+  barOpened: boolean;
+
   constructor(private electron: ElectronService) {
 
+  }
+
+  openSubmenu() {
+    console.log('open sub.');
+    this.barOpened = true;
   }
 
   openDialog() {
@@ -31,9 +38,5 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-
-
-  }
-
+  ngOnInit() { }
 }

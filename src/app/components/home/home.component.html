@@ -1,6 +1,37 @@
-<div class="container">
-  <h1 class="title">
-    {{ 'PAGES.HOME.TITLE' | translate }}
-  </h1>
-  <button (click)='openDialog()'>Open dialog</button>
-</div>
+<mat-toolbar color='secondary'>
+  <mat-toolbar-row>
+    <span>
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon aria-label="Material button">menu</mat-icon>
+      </button>
+    </span>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-sidenav-container class="container">
+  <mat-sidenav #sidenav mode="side" [(opened)]="barOpened" (opened)="barEvents.push('open')" (closed)="barEvents.push('close')">
+    Sidenav content...
+  </mat-sidenav>
+
+  <mat-sidenav-content class="content">
+    <h1 class="title">
+      {{ 'PAGES.HOME.TITLE' | translate }}
+    </h1>
+    <button mat-flat-button color="light" (click)='openDialog()'>Open dialog</button>
+    <mat-card class="card">
+      <mat-card-header>
+        <mat-card-title>
+          <span>Angular Material card</span>
+        </mat-card-title>
+        <mat-card-content>
+          <p>
+            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+            bred for hunting.
+          </p>
+        </mat-card-content>
+      </mat-card-header>
+    </mat-card>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>

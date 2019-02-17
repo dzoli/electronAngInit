@@ -1,4 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "~material-design-icons/iconfont/material-icons.css"; // it is deprecated! It must be testet at prod time
+
 html, body {
   margin: 0;
   padding: 0;
