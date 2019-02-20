@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ElectronService } from '../../providers/electron.service';
+import { Options } from '../../model/options';
+import { FileService } from '../../shared/file/file.service';
+
 
 @Component({
   selector: 'app-home',
@@ -11,7 +14,7 @@ export class HomeComponent implements OnInit {
   barEvents: string[] = [];
   barOpened: boolean;
 
-  constructor(private electron: ElectronService) {
+  constructor(private electron: ElectronService, private file: FileService) {
 
   }
 
@@ -20,18 +23,12 @@ export class HomeComponent implements OnInit {
     this.barOpened = true;
   }
 
-  openDialog() {
-    const options = {
-      type: 'question',
-      buttons: ['Cancel', 'Yes, please', 'No, thanks'],
-      defaultId: 2,
-      title: 'Questions',
-      message: 'Do you want to do this?',
-      detail: 'It does not really matter',
-      checkboxLabel: 'Remember my answer',
-      checkboxChecked: true,
-    };
+  saveDialog() {
+    this.file.saveFile('aa');
+  }
 
+  openDialog() {
+    const options = new Options('question', 'Title', 'message text');
     this.electron.remote.dialog.showMessageBox(null, options, (response, checkboxChecked) => {
       console.log('Response = ', response);
       console.log('Checkbox = ', checkboxChecked);
